@@ -1,0 +1,392 @@
+{
+  "info": {
+    "_postman_id": "8d089f01-3cf8-4800-8dc7-58d693f45246",
+    "name": "Grocery store",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "18599642"
+  },
+  "item": [
+    {
+      "name": "Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "",
+                  "pm.globals.set('access_token', response.accessToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"user1\",\n  \"password\": \"password1\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/login",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "auth", "login"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Signup",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "exec": [
+                  "const response = pm.response.json();",
+                  "",
+                  "pm.globals.set('access_token', response.accessToken);"
+                ],
+                "type": "text/javascript"
+              }
+            }
+          ],
+          "request": {
+            "auth": {
+              "type": "bearer"
+            },
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newUser1\",\n  \"password\": \"newPassword1\",\n  \"confirmPassword\": \"newPassword1\",\n  \"name\": \"New User\",\n  \"role\": \"employee\",\n  \"facilityName\": \"Radnja 1\" \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/auth/signup",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "auth", "signup"]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Employee",
+      "item": [
+        {
+          "name": "Get employee",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/employees/6609d3646ccb6ee05a450ef4",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "employees", "6609d3646ccb6ee05a450ef4"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete employee",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/employees/6609cc53c92277a0170b9ffa",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "employees", "6609cc53c92277a0170b9ffa"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create employee",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newUser6\",\n  \"password\": \"newPassword5\",\n  \"name\": \"New User\",\n  \"facilityName\": \"Radnja 1\" \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/employees/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "employees", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update employee",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newUsername\": \"newUser12\",\n  \"newPassword\": \"newPassword12\",\n  \"newRole\": \"employee\",\n  \"newFacilityName\": \"Vojvodina\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/employees/6609af882d597bb24c3fb088",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "employees", "6609af882d597bb24c3fb088"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get employees for a facility",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/employees/facility/6609af872d597bb24c3fb076?includeDescendants=true",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [
+                "api",
+                "employees",
+                "facility",
+                "6609af872d597bb24c3fb076"
+              ],
+              "query": [
+                {
+                  "key": "includeDescendants",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Manager",
+      "item": [
+        {
+          "name": "Get manager",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/managers/6609d3646ccb6ee05a450ef4",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "managers", "6609d3646ccb6ee05a450ef4"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Delete manager",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/managers/6609cc53c92277a0170b9ffa",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "managers", "6609cc53c92277a0170b9ffa"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Create manager",
+          "request": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"username\": \"newUser6\",\n  \"password\": \"newPassword5\",\n  \"name\": \"New User\",\n  \"facilityName\": \"Radnja 1\" \n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/managers/",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "managers", ""]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Update manager",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"newUsername\": \"newUser12\",\n  \"newPassword\": \"newPassword12\",\n  \"newRole\": \"employee\",\n  \"newFacilityName\": \"Vojvodina\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "http://localhost:3000/api/managers/6609af882d597bb24c3fb088",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": ["api", "managers", "6609af882d597bb24c3fb088"]
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "Get managers for a facility",
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Authorization",
+                "value": "Bearer {{access_token}}",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "http://localhost:3000/api/managers/facility/6609af872d597bb24c3fb076?includeDescendants=true",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "3000",
+              "path": [
+                "api",
+                "managers",
+                "facility",
+                "6609af872d597bb24c3fb076"
+              ],
+              "query": [
+                {
+                  "key": "includeDescendants",
+                  "value": "true"
+                }
+              ]
+            }
+          },
+          "response": []
+        }
+      ],
+      "auth": {
+        "type": "noauth"
+      },
+      "event": [
+        {
+          "listen": "prerequest",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        },
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [""]
+          }
+        }
+      ]
+    }
+  ]
+}
