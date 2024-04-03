@@ -4,7 +4,7 @@ import { FacilityType } from '../enums/FacilityType';
 export interface FacilityModel extends Document {
   name: string;
   type: FacilityType;
-  parentId?: ObjectId[];
+  parentId?: ObjectId;
 }
 
 const FacilitySchema: Schema<FacilityModel> = new Schema({
