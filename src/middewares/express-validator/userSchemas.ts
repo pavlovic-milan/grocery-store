@@ -45,7 +45,7 @@ export const updateUserSchema = [
     .withMessage('newName has to be a string'),
   body('newRole')
     .optional()
-    .custom((value: any) => {
+    .custom((value) => {
       return Object.values(UserRole).includes(value);
     })
     .withMessage(

@@ -1,4 +1,4 @@
-import { NextFunction, Request, Response } from 'express';
+import { NextFunction, Response } from 'express';
 import { HttpResponseCode } from '../enums/HttpResponseCode';
 import { UserRole } from '../enums/UserRole';
 import { AppRequest } from '../middewares/authenticate';

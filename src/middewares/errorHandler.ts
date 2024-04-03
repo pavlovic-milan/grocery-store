@@ -3,7 +3,9 @@ import { HttpResponseCode } from '../enums/HttpResponseCode';
 import PublicError from '../errors/PublicError';
 
 export default async function errorHandler(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   err: any,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   req: any,
   res: Response,
   // eslint-disable-next-line @typescript-eslint/no-unused-vars

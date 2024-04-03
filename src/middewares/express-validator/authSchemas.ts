@@ -42,7 +42,7 @@ export const signupSchema = [
   body('role')
     .notEmpty()
     .withMessage('role is required field')
-    .custom((value: any) => {
+    .custom((value) => {
       return Object.values(UserRole).includes(value);
     })
     .withMessage(

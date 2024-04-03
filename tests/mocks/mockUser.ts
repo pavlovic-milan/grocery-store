@@ -15,6 +15,7 @@ export const mockUser = (
       username: this.username,
       name: this.name,
       role: this.role,
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } as any;
   },
   ...overrides,
